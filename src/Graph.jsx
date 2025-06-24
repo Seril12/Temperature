@@ -17,6 +17,7 @@ const data = [
   { time: 5400, temperature :  10},
   { time: 7200, temperature : 28},
 ];
+const latestPoint = data.length > 0 ? data[data.length - 1] : null;
 
 function Graph() {
   return (
@@ -31,7 +32,8 @@ function Graph() {
       <Line type="monotone"
        dataKey="temperature" 
        stroke="red" 
-       strokeWidth={3}/>
+       strokeWidth={3}
+       />
       <CartesianGrid stroke="#444444"
     />
       <XAxis
@@ -65,6 +67,19 @@ function Graph() {
       />
       
     </LineChart>
+          {latestPoint && (
+        <div
+          style={{
+            color: "red",
+            fontSize: "15px",
+            fontWeight: "bold",
+            marginTop: "10px",
+            textAlign: "center"
+          }}
+        >
+          Temperature:  {latestPoint.temperature.toFixed(2)}°C
+        </div>
+      )}
     </div>
   );
 }
